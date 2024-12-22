@@ -6,6 +6,7 @@ import hiber.model.User;
 import hiber.service.CarService;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.ui.Model;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -29,10 +30,11 @@ public class MainApp {
         carService.add(toyota);
 
 
-        userService.add(new User("User1", "Lastname1", "user1@mail.ru"));
-        userService.add(new User("User2", "Lastname2", "user2@mail.ru"));
-        userService.add(new User("User3", "Lastname3", "user3@mail.ru"));
-        userService.add(new User("User4", "Lastname4", "user4@mail.ru"));
+        userService.add(new User("User1", "Lastname1", "user1@mail.ru", bmw));
+        userService.add(new User("User2", "Lastname2", "user2@mail.ru", mersedes));
+        userService.add(new User("User3", "Lastname3", "user3@mail.ru", porshe));
+        userService.add(new User("User4", "Lastname4", "user4@mail.ru",toyota));
+
 
         List<User> users = userService.listUsers();
         for (User user : users) {
@@ -42,7 +44,9 @@ public class MainApp {
             System.out.println("Email = " + user.getEmail());
             System.out.println();
         }
-        System.out.println("У юзера машина: " + bmw + " - " + userService.getUserCar(bmw));
+
+
+        System.out.println(userService.getUserCar("911", 888));
 
         context.close();
     }
